@@ -7,19 +7,21 @@ In this readme i will be describing my project and my improvements along the way
 
 The idea i had when i was starting this project was a control panel that controls a firework show. This way i can combine 2 things into 1. I made some sketches to display what i was trying to do
 
+<img src="/docs/images/console-close.jpg" width="400" height="200"><img src="/docs/images/idea-console-fireworks.jpg" width="400" height="200">
+
 
 ## My first demo
 
-<details>
-  <summary>Lever and buttons</summary>
-  <br/>
 After i made my sketches i started coding a bit to try and get a feel for what i wanted. I quickly made some nice radiobuttons i am going to use for changing the amount of fireworks being launched.
 
 Then i tried to build a good looking lever using animations, But after a very long time when i finally finished it i heard from sanne there was another way easier way of doing it that looked better aswell. So below i will show my code before the change.
 
 <a href="https://codepen.io/Kitch41/pen/eYoObJK?editors=1100">Link</a>
 
-``` css
+<details>
+  <summary>The Code for the lever (old)</summary>
+
+  ``` css
 
 /* ============================*/
 /* ===========Lever============*/
