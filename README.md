@@ -192,4 +192,15 @@ section > ul > li:nth-child(1) > label > div {
   
 </details>
 
+<details>
+  <summary>The Code for the lever (new)</summary>
+
+  ``` css
+
+
+```
+  
+</details>
+
+
 
