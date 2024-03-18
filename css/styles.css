@@ -398,12 +398,12 @@
 
 @keyframes down {
   0% {
-    height: 38rem;
+    height: 80%;
     bottom: 4.95em;
   }
 
   50% {
-    height: 38rem;
+    height: 80%;
     bottom: 4.95em;
   }
 
