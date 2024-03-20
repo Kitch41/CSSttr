@@ -229,8 +229,11 @@ After i switched from codepen to visual studio code i had an amazing idea so i s
 
 The biggest challenge i walked into was making the whole thing responsive. At first i tried doing it the simple way. By just making the panel width: 100vw. But it turns out that i needed a lot more space so i started to work with animations. After a while i made some pretty awesome animations and managed to fit all the features into 1 panel. So the app works on mobile and desktop.
 
+<img src="./images/panel.png">
 
 ## Conclusion
+
+<img src="./images/final.png">
 
 There are a few things i wish i could've still done had i had more time.
 
