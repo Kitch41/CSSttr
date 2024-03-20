@@ -1,7 +1,12 @@
 # CSS to the rescue
-This is a repository for my school project. (Stef Keuken)
+
+This is a repository for my school project.
 
 In this readme i will be describing my project and my improvements along the way
+
+Made by:
+
+- [@Stef Keuken](https://www.github.com/kitch41)
 
 ## My Idea
 
@@ -202,5 +207,39 @@ section > ul > li:nth-child(1) > label > div {
   
 </details>
 
+## The next step
 
+After this demo i started really working hard on codepen to create something that would be easily transferred to vscode and not to complicated so i could keep using codepen. This lasted a little while until it got too complicated and i had to switch from codepen to visual studio code.
+
+In this codepen i got the console looking good and working properly. I just needed to create the fireworks myself and add the functionality to the controls on the panel.
+
+### My codepen
+
+https://codepen.io/Kitch41/pen/NWmWQxr
+
+
+## Sannehoofd
+
+After i switched from codepen to visual studio code i had an amazing idea so i started making my teachers head in my fireworks show. It took me a whole day just to setup the dots in the right place. But im happy its looking this good.
+
+<img src="./images/sannehoofd.png">
+
+
+## Responsive
+
+The biggest challenge i walked into was making the whole thing responsive. At first i tried doing it the simple way. By just making the panel width: 100vw. But it turns out that i needed a lot more space so i started to work with animations. After a while i made some pretty awesome animations and managed to fit all the features into 1 panel. So the app works on mobile and desktop.
+
+
+## Conclusion
+
+There are a few things i wish i could've still done had i had more time.
+
+I would've liked to add some custom shapes into a panel. so you can choose the shape you like.
+I also would've liked to make it more of a show. So make it look a little random and not have thesame fireworks over and over again.
+
+There are some other things i would like to still create but these are the best ones.
+
+### Improvement
+
+I improved a lot with this project. Mostly in creating 3d, Animations and how to create some fireworks using background gradients.
 
