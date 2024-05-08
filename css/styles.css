@@ -10,6 +10,8 @@
     --colorleft2 : hsl(calc(360 * var(--secondaryhue2, .9)) 100% 50%);
     --colorright2 : hsl(calc(360 * var(--secondaryhue3, .9)) 100% 50%);
 
+    --intro-duration: 2s;
+
 
 }
 
@@ -38,7 +40,7 @@
     background-image: linear-gradient(305deg, tomato, gold, cyan);
     margin: 0;
   
-      animation: title 10s forwards;
+      animation: title var(--intro-duration) forwards;
   }
 
   @keyframes title {
@@ -126,7 +128,7 @@
     background-image: url(../images/grass.jpg);
     background-size: cover;
     z-index: 1;
-
+    animation: intro var(--intro-duration) ;
 
   }
   
@@ -153,12 +155,27 @@
 
     transition: 1s ease;
 
+    animation: intro var(--intro-duration) ;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: -1em;
+      width: 100%;
+      background-color: #1e2026;
+      height: 4px;
+    }
+
     
     
 
     @media (max-width: 888px) {
       
-      animation: down 2s forwards
+      transition: 2s 1s;
+
+      height: 15rem ;
+      bottom: -10em;
+
     }
 
     @media (min-width: 888px) {
@@ -167,14 +184,7 @@
     }
     
   }
-  section:nth-of-type(2)::before {
-    content: "";
-    position: absolute;
-    top: -1em;
-    width: 100%;
-    background-color: #1e2026;
-    height: 4px;
-  }
+
   
   section:nth-of-type(3) {
     position: fixed;
@@ -190,8 +200,7 @@
     min-width: 620px;
     box-shadow: 47px 0 0 #25282b;
 
-
-
+    animation: intro var(--intro-duration) ;
     z-index: 10;
 
     @media (max-width: 1060px) {
@@ -221,13 +230,28 @@
     }
     
   }
+
+  section:nth-of-type(2) > div {
+    width: 100%;
+    height: 4em;
+   
+
+    position: absolute;
+    top: -5em;
+
+    @media (max-width: 888px) {
+      width: calc(100vw + 16px);
+      background-color: #25282b;
+    }
+
+  }
   
-  section:nth-of-type(2) > div:nth-of-type(1) {
+  section:nth-of-type(2) > div > div:nth-of-type(1) {
     display: none;
 
     position: absolute;
-    top: -5.5em;
-    right: 10em;
+    top: -1.2em;
+    right: 10%;
 
     border: 10px solid #25282b;
     border-bottom: #0000;
@@ -237,23 +261,6 @@
     z-index: 100;
 
     transform: rotateX( 60deg);
-
-
-    box-shadow: 
-
-    140px 0 0 0 #25282b,
-    70px 0 0 0 #25282b,
-    -90px 0 0 0 #25282b,
-    -180px 0 0 0 #25282b,
-    -270px 0 0 0 #25282b,
-    -360px 0 0 0 #25282b,
-    -450px 0 0 0 #25282b,
-    -540px 0 0 0 #25282b,
-    -630px 0 0 0 #25282b,
-    -720px 0 0 0 #25282b,
-    -810px 0 0 0 #25282b;
-    
-    ;
 
 
     @media (max-width: 888px) {
@@ -301,10 +308,6 @@
       0 1.6em 0 var(--updownbuttoncolor),
       0 1.7em 0 var(--updownbuttoncolor)
       ;
-
-
-
-
     }
 
     input {
@@ -337,12 +340,136 @@
   }
 
 
-    body:has(section:nth-of-type(2) > div input[type="checkbox"]:checked)  section:nth-of-type(2) {
-      
-      animation: up 2s forwards;
+  section:nth-of-type(2) > div > div:nth-of-type(2) { 
+
+    position: absolute;
+    top: 3em;
+    left: 5rem;
+
+    display: flex;
+    justify-content: center;
+
+    
+
+    /* border: 1px solid darkgrey; */
+    width: 12em;
+    height: 2em;
+    z-index: 100;
+    padding: 0;
+
+    align-items: center;
+    transform-style:preserve-3d;
+
+    /* background-color: darkgrey;
+    border-radius: 0.5em; */
+   
+    /* box-shadow: 
+    0 8px 0 0 gray,
+    0 0 10px 0 black inset; */
+
+
+    @media (max-width: 888px) {
+      top: 1.5em;
+      left: 10px;
+    }
+    
+
+
+    &::before {
+      content: "";
+      position: absolute;
+      z-index: 101;
+      height: 1.5em;
+      width: 1.5em;
+      border-radius: 10em 10em 0 0;
+      background-color: grey;
+      box-shadow: 0 0 10px 0 black inset;
+      border: 3px solid grey;
+      margin-bottom: 1em;
     }
 
-    body:has(section:nth-of-type(2) > div input[type="checkbox"]:checked)  section:nth-of-type(2) > div label {
+
+    label {
+      display:grid;
+      height:1em;
+      width:4em;
+      margin-bottom: 1em;
+    
+      z-index: 100;
+    
+      background-color:grey;
+      box-shadow: -2px 0 6px black inset, -2px 0 6px black inset;
+      border-radius: 10px;
+      margin-left: 4em;
+      
+      transition:3s;
+      transform-origin:center left;
+
+      
+      place-content:start start;
+      
+      cursor: pointer;
+    
+
+      transition-timing-function: linear(
+      /* Start to 1st bounce */
+      0, 0.004, 0.016, 0.035, 0.063 9.1%, 0.141, 0.25, 0.391, 0.563, 0.765, 1,
+      /* 1st to 2nd bounce */
+      0.891, 0.813 45.5%, 0.785, 0.766, 0.754, 0.75, 0.754, 0.766, 0.785, 0.813 63.6%, 0.891, 1 72.7%,
+      /* 2nd to 3rd bounce */
+      0.973, 0.953, 0.941, 0.938, 0.941, 0.953, 0.973, 1,
+      /* 3rd bounce to end */
+      0.988, 0.984, 0.988, 1
+  );
+
+
+    }
+
+    label:before {
+      content:"";
+      position:relative;
+      display:block;
+      z-index: 1;
+      left: 50px;
+    
+      width:2em;
+      height:2em;
+      background-color:red;
+
+      box-shadow: 1px 0 6px black inset, -3px 0 6px black inset;
+      border-radius:50%;
+      transform:translateY( -6px) rotateX(0deg);
+      
+      transition:3s;
+      transition-timing-function: linear(
+          0, 0.004, 0.016, 0.035, 0.063 9.1%, 0.141, 0.25, 0.391, 0.563, 0.765, 1,
+          0.891, 0.813 45.5%, 0.785, 0.766, 0.754, 0.75, 0.754, 0.766, 0.785, 0.813 63.6%, 0.891, 1 72.7%,
+          0.973, 0.953, 0.941, 0.938, 0.941, 0.953, 0.973, 1,
+          0.988, 0.984, 0.988, 1
+      );
+    }
+
+    label:has(:checked) { 
+      transform:perspective(10em) rotateZ(-180deg) skewx(2deg);
+      transform-origin: left center;
+    }
+
+    input {
+     display: none; 
+    }
+
+  }
+
+
+    body:has(section:nth-of-type(2) > div > div input[type="checkbox"][name="popup"]:checked)  section:nth-of-type(2) {
+  
+      transition: 2s 1s ;
+      height: 70%;
+      bottom: 4.95em;
+
+    }
+
+    body:has(section:nth-of-type(2) > div > div input[type="checkbox"][name="popup"]:checked)  section:nth-of-type(2) > div > div:nth-of-type(1) label {
  
       translate: 0 2em;
       box-shadow: 
@@ -370,50 +497,13 @@
 
     }
 
-    body:has(section:nth-of-type(2) > div input[type="checkbox"]:checked)  section:nth-of-type(2) > div label::after {
+    body:has(section:nth-of-type(2) > div > div input[type="checkbox"][name="popup"]:checked)  section:nth-of-type(2) > div > div:nth-of-type(1) label::after {
       opacity: 1;
     }
  
-    body:has(section:nth-of-type(2) > div input[type="checkbox"]:checked)  section:nth-of-type(2) > div label::before {
+    body:has(section:nth-of-type(2) > div > div input[type="checkbox"][name="popup"]:checked)  section:nth-of-type(2) > div > div:nth-of-type(1) label::before {
       opacity: 0;
     }
-
-@keyframes up {
-  0% {
-    height: 15rem ;
-    bottom: -10em;
-  }
-
-  50% {
-    height: 15rem ;
-    bottom: -10em;
-  }
-
-  100% {
-    height: 80%;
-    bottom: 4.95em;
-  }
-
-}
-
-@keyframes down {
-  0% {
-    height: 80%;
-    bottom: 4.95em;
-  }
-
-  50% {
-    height: 80%;
-    bottom: 4.95em;
-  }
-
-  100% {
-    height: 15rem ;
-    bottom: -10em;
-  }
-
-
-}
 
 
   
@@ -896,9 +986,9 @@ section > ul > li:nth-of-type(5) {
     display: block;
   }
 
-  body:has(section:nth-of-type(2) ul input[type="checkbox"]:not(:checked)) section:nth-of-type(1) div:nth-of-type(1),
-  body:has(section:nth-of-type(2) ul input[type="checkbox"]:not(:checked)) section:nth-of-type(1) div:nth-of-type(2),
-  body:has(section:nth-of-type(2) ul input[type="checkbox"]:not(:checked)) section:nth-of-type(1) div:nth-of-type(3)  {
+  body:has(section:nth-of-type(2) div input[type="checkbox"][name="launch"]:not(:checked)) section:nth-of-type(1) div:nth-of-type(1),
+  body:has(section:nth-of-type(2) div input[type="checkbox"][name="launch"]:not(:checked)) section:nth-of-type(1) div:nth-of-type(2),
+  body:has(section:nth-of-type(2) div input[type="checkbox"][name="launch"]:not(:checked)) section:nth-of-type(1) div:nth-of-type(3)  {
     display: none!important;
   }
 
