@@ -5,6 +5,14 @@
     <title>Css to the rescue</title>
 
     <link href="./css/styles.css" rel="stylesheet" type="text/css">
+    <link href="./css/added.css" rel="stylesheet" type="text/css">
+
+    <!-- jsDelivr  -->
+    <script src="https://cdn.jsdelivr.net/npm/fireworks-js@2.x/dist/index.umd.js"></script>
+
+    <!-- UNPKG -->
+    <script src="https://unpkg.com/fireworks-js@2.x/dist/index.umd.js"></script>
+
 
 </head>
 <body>
@@ -13,92 +21,259 @@
 
   <h1>Fireworks</h1>
     
-    <section>
+    <section id="fireworks">
         <div></div>
         <div></div>
         <div></div>
-      </section>
+    </section>
+      <section>
+        <div>
+          <div><label><input type="checkbox"  name="popup"></label></div>
+          <div><label><input type="checkbox"  name="launch"></label></div>
+        </div>
 
-      
-  
-      
-      
+        <ul>
+          <li>
+            <ul>
+              <li>
+                <input type="radio" id="css" name="cssjs" value="1" checked="checked">
+                <label for="css">CSS</label>
+              </li>
+              <li>
+                <input type="radio" id="js" name="cssjs" value="2">
+                <label for="js">JS</label>
+              </li>
+              </ul>
+          </li>
+          <li>
+            <ul>
+              <li>
+                <input type="radio" id="1" name="amount" value="1" checked="checked">
+                <label for="1">1</label>
+              </li>
+              <li>
+                <input type="radio" id="2" name="amount" value="2">
+                <label for="2">2</label>
+              </li>
+              <li>
+                <input type="radio" id="3" name="amount" value="3">
+                <label for="3">3</label>
+              </li>
+              </ul>
+          </li>
+          <li>
+              <label>
+                  Color 1:
+                  <input type="range" min="0" max="1" step="0.01" value=".8" name="hue1" orient="vertical">	
+              </label>
+              <label>
+                  Color 2:
+                  <input type="range" min="0" max="1" step=".01" value=".5" name="secondaryhue1" orient="vertical">	
+              </label>
+              <div></div>
+              <div></div>
+            </li>
+            <li>
+              <label>
+                  Color 1:
+                  <input type="range" min="0" max="1" step="0.01" value=".1" name="hue2" orient="vertical">	
+              </label>
+              <label>
+                  Color 2:
+                  <input type="range" min="0" max="1" step=".01" value=".7" name="secondaryhue2" orient="vertical">	
+              </label>
+              <div></div>
+              <div></div>
+            </li>
+            <li>
+              <label>
+                  Color 1:
+                  <input type="range" min="0" max="1" step="0.01" value=".4" name="hue3" orient="vertical">	
+              </label>
+              <label>
+                  Color 2:
+                  <input type="range" min="0" max="1" step=".01" value=".3" name="secondaryhue3" orient="vertical">	
+              </label>
+              <div></div>
+              <div></div>
+            </li>
+          </ul>
+        </section>
         <section>
-          <div>
-            <div><label><input type="checkbox"  name="popup"></label></div>
-            <div><label><input type="checkbox"  name="launch"></label></div>
+        </section>
+        <section>
+
+        </section>
+
+
+          <div class="stars" id="starContainer">
+              <div class="star" id="star1"></div>
+              <div class="star"></div>
+              <div class="star" id="star2"></div>
+              <div class="star"></div>
+              <div class="star" id="star3"></div>
+              <div class="star"></div>
+              <div class="star" id="star4"></div>
+              <div class="star"></div>  
+              <div class="star" id="star5"></div>
+              <div class="star"></div>  
+              <div class="star" id="star6"></div>
+              <div class="star"></div>  
+              <div class="star" id="star7"></div>
+              <div class="star"></div>  
+              <div class="star" id="star8"></div>
+              <div class="star"></div>  
+              <div class="star" id="star9"></div>
+              <div class="star"></div>  
+              <div class="star" id="star10"></div>
+              <div class="star"></div> 
+              <div class="star" id="star11"></div>
+              <div class="star"></div> 
           </div>
 
-          <ul>
-            <li>
-              <div>
-                <label>
-                  <input type="checkbox" name="lever">
-                </label>
+          <div class="bigCloud" id="cloud1">
+              <div class="largeCircle" id="circ1">
+                  <div class="largeCircle" id="circ1shadow"></div>
               </div>
-            </li>
-            <li>
-              <ul>
-                <li>
-                  <input type="radio" id="1" name="amount" value="1" checked="checked">
-                  <label for="1">1</label>
-                </li>
-                <li>
-                  <input type="radio" id="2" name="amount" value="2">
-                  <label for="2">2</label>
-                </li>
-                <li>
-                  <input type="radio" id="3" name="amount" value="3">
-                  <label for="3">3</label>
-                </li>
-                </ul>
-            </li>
-            <li>
-                <label>
-                    Color 1:
-                    <input type="range" min="0" max="1" step="0.01" value=".8" name="hue1" orient="vertical">	
-                </label>
-                <label>
-                    Color 2:
-                    <input type="range" min="0" max="1" step=".01" value=".5" name="secondaryhue1" orient="vertical">	
-                </label>
-                <div></div>
-                <div></div>
-             </li>
-             <li>
-                <label>
-                    Color 1:
-                    <input type="range" min="0" max="1" step="0.01" value=".1" name="hue2" orient="vertical">	
-                </label>
-                <label>
-                    Color 2:
-                    <input type="range" min="0" max="1" step=".01" value=".7" name="secondaryhue2" orient="vertical">	
-                </label>
-                <div></div>
-                <div></div>
-             </li>
-             <li>
-                <label>
-                    Color 1:
-                    <input type="range" min="0" max="1" step="0.01" value=".4" name="hue3" orient="vertical">	
-                </label>
-                <label>
-                    Color 2:
-                    <input type="range" min="0" max="1" step=".01" value=".3" name="secondaryhue3" orient="vertical">	
-                </label>
-                <div></div>
-                <div></div>
-             </li>
-           </ul>
-          </section>
-          <section>
-            
-        </section>
-        <section>
+              <div class="middleCircle" id="circ2">
+                  <div class="middleCircle" id="circ2shadow"></div>
+              </div>
+              <div class="middleCircle" id="circ3">
+                  <div class="middleCircle" id="circ3shadow"></div>
+              </div>
+              <div class="smallCircle" id="circ4"></div>
+              <div class="smallCircle" id="circ5">
+                  <div class="smallCircle" id="circ5shadow"></div>
+              </div>
+              <div class="smallCircle" id="circ6">
+                  <div class="smallCircle" id="circ6shadow"></div>
+              </div>
+          </div>
+          <div class="bigCloud" id="cloud2">
+              <div class="largeCircle" id="circ1">
+                  <div class="largeCircle" id="circ1shadow"></div>
+              </div>
+              <div class="middleCircle" id="circ2">
+                  <div class="middleCircle" id="circ2shadow"></div>
+              </div>
+              <div class="middleCircle" id="circ3">
+                  <div class="middleCircle" id="circ3shadow"></div>
+              </div>
+              <div class="smallCircle" id="circ4"></div>
+              <div class="smallCircle" id="circ5">
+                  <div class="smallCircle" id="circ5shadow"></div>
+              </div>
+              <div class="smallCircle" id="circ6">
+                  <div class="smallCircle" id="circ6shadow"></div>
+              </div>
+          </div>
 
-        </section>
+          <div class="bigCloud" id="cloud3">
+              <div class="largeCircle" id="circ1">
+                  <div class="largeCircle" id="circ1shadow"></div>
+              </div>
+              <div class="middleCircle" id="circ2">
+                  <div class="middleCircle" id="circ2shadow"></div>
+              </div>
+              <div class="middleCircle" id="circ3">
+                  <div class="middleCircle" id="circ3shadow"></div>
+              </div>
+              <div class="smallCircle" id="circ4"></div>
+              <div class="smallCircle" id="circ5">
+                  <div class="smallCircle" id="circ5shadow"></div>
+              </div>
+              <div class="smallCircle" id="circ6">
+                  <div class="smallCircle" id="circ6shadow"></div>
+              </div>
+          </div>
+
+          <div class="bigCloud" id="cloud4">
+              <div class="largeCircle" id="circ1">
+                  <div class="largeCircle" id="circ1shadow"></div>
+              </div>
+              <div class="middleCircle" id="circ2">
+                  <div class="middleCircle" id="circ2shadow"></div>
+              </div>
+              <div class="middleCircle" id="circ3">
+                  <div class="middleCircle" id="circ3shadow"></div>
+              </div>
+              <div class="smallCircle" id="circ4"></div>
+              <div class="smallCircle" id="circ5">
+                  <div class="smallCircle" id="circ5shadow"></div>
+              </div>
+              <div class="smallCircle" id="circ6">
+                  <div class="smallCircle" id="circ6shadow"></div>
+              </div>
+          </div>
+
+          <div class="bigCloud" id="cloud5">
+              <div class="largeCircle" id="circ1">
+                  <div class="largeCircle" id="circ1shadow"></div>
+              </div>
+              <div class="middleCircle" id="circ2">
+                  <div class="middleCircle" id="circ2shadow"></div>
+              </div>
+              <div class="middleCircle" id="circ3">
+                  <div class="middleCircle" id="circ3shadow"></div>
+              </div>
+              <div class="smallCircle" id="circ4"></div>
+              <div class="smallCircle" id="circ5">
+                  <div class="smallCircle" id="circ5shadow"></div>
+              </div>
+              <div class="smallCircle" id="circ6">
+                  <div class="smallCircle" id="circ6shadow"></div>
+              </div>
+          </div>
+
+          <div class="bigCloud" id="cloud6">
+              <div class="largeCircle" id="circ1">
+                  <div class="largeCircle" id="circ1shadow"></div>
+              </div>
+              <div class="middleCircle" id="circ2">
+                  <div class="middleCircle" id="circ2shadow"></div>
+              </div>
+              <div class="middleCircle" id="circ3">
+                  <div class="middleCircle" id="circ3shadow"></div>
+              </div>
+              <div class="smallCircle" id="circ4"></div>
+              <div class="smallCircle" id="circ5">
+                  <div class="smallCircle" id="circ5shadow"></div>
+              </div>
+              <div class="smallCircle" id="circ6">
+                  <div class="smallCircle" id="circ6shadow"></div>
+              </div>
+          </div>
+
+          <div class="bigCloud" id="cloud7">
+              <div class="largeCircle" id="circ1">
+                  <div class="largeCircle" id="circ1shadow"></div>
+              </div>
+              <div class="middleCircle" id="circ2">
+                  <div class="middleCircle" id="circ2shadow"></div>
+              </div>
+              <div class="middleCircle" id="circ3">
+                  <div class="middleCircle" id="circ3shadow"></div>
+              </div>
+              <div class="smallCircle" id="circ4"></div>
+              <div class="smallCircle" id="circ5">
+                  <div class="smallCircle" id="circ5shadow"></div>
+              </div>
+              <div class="smallCircle" id="circ6">
+                  <div class="smallCircle" id="circ6shadow"></div>
+              </div>
+          </div>
+
+          <button id="settings-btn">Settings</button>
+          <div id="settings-menu" class="settings-menu">
+            <label for="sound-button">Mute: <input type="checkbox" id="sound-button"></label>
+            <label for="cloud-button">Clouds: <input type="checkbox" id="cloud-button" checked></label>
+            <label for="star-button">Stars: <input type="checkbox" id="star-button" checked></label>
+          </div>
+
+          
 
         <script src="./js/scripts.js"></script>
+        <script src="./js/added.js"></script>
 </body>
 
 </html>
