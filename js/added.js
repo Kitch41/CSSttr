@@ -63,10 +63,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const bothButton = document.querySelector('#both');
     const allinputs = document.querySelectorAll('input');
     const settingsMenu = document.getElementById('settings-menu');
-    const settingsInputs = settingsMenu.querySelectorAll('input');
     let isEnabled = false;
 
-    launchInput.addEventListener('click', function () {
+    function handleLaunchInputClick() {
         isEnabled = !isEnabled;
 
         allinputs.forEach(input => {
@@ -77,22 +76,31 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (isEnabled) {
             if (jsButton.checked) {
-                cssdivs.forEach(element => {
-                    element.style.display = "none";
-                });
+                enableCssFireworks();
                 fireworks.start();
-
             } else if (bothButton.checked) {
                 fireworks.start();
             } else {
-                cssdivs.forEach(element => {
-                    element.style.display = "block";
-                });
+                disableCssFireworks();
             }
         } else {
             fireworks.waitStop();
         }
-    });
+    }
+
+    function disableCssFireworks() {
+        cssdivs.forEach(element => {
+            element.style.display = "none";
+        });
+    }
+
+    function enableCssFireworks() {
+        cssdivs.forEach(element => {
+            element.style.display = "block";
+        });
+    }
+
+    launchInput.addEventListener('click', handleLaunchInputClick);
 
     let cssdivs = container.querySelectorAll('div');
 
@@ -152,92 +160,96 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const starButton = document.getElementById('star-button');
     starButton.addEventListener('change', () => {
-        let starContainer = document.getElementById('starContainer')
-
+        let starContainer = document.getElementById('starContainer');
         starContainer.style.display = starButton.checked ? 'block' : 'none';
-
     });
-const autoscrollButton = document.getElementById('autoscroll-button');
-let autoscroll = true; // Initial state is autoscrolling on
 
-autoscrollButton.addEventListener('change', () => {
-    if (autoscroll) {
-        stopAutoScroll();
-        autoscroll = false;
-        console.log('Autoscroll turned off');
-    } else {
-        startAutoScroll(timeToScroll, pauseTime);
-        autoscroll = true;
-        console.log('Autoscroll turned on');
-    }
-});
+    const autoscrollButton = document.getElementById('autoscroll-button');
+    let autoscroll = true;
 
-let scrollPosition = 0;
-let scrollDirection = 1;
-let isManualScroll = false;
-let autoScrollInterval;
-let timeToScroll = 50000;
-let pauseTime = 5000;
-
-function startAutoScroll(scrollTime, stayTime) {
-    const scrollStep = (document.body.scrollHeight - window.innerHeight) / (scrollTime / 10);
-    let stayCounter = 0;
-    let isStaying = false;
-    
-    autoScrollInterval = setInterval(() => {
-        if (!isManualScroll && autoscroll) { // Check if autoscroll is enabled
-            if (!isStaying) {
-                scrollPosition += scrollDirection * scrollStep;
-                
-                if (scrollPosition >= document.body.scrollHeight - window.innerHeight) {
-                    scrollDirection = -1;
-                    scrollPosition = document.body.scrollHeight - window.innerHeight;
-                    isStaying = true;
-                } else if (scrollPosition <= 0) {
-                    scrollDirection = 1;
-                    scrollPosition = 0;
-                    isStaying = true;
-                }
-                
-                document.documentElement.scrollTop = scrollPosition;
-                document.body.scrollTop = scrollPosition;
-                
-                // console.log('Scrolling to:', scrollPosition);
-                // for testing the position timing
-            } else {
-                stayCounter += 10;
-                if (stayCounter >= stayTime) {
-                    stayCounter = 0;
-                    isStaying = false;
-                }
-            }
+    autoscrollButton.addEventListener('change', () => {
+        if (autoscroll) {
+            stopAutoScroll();
+            autoscroll = false;
+            console.log('Autoscroll turned off');
+        } else {
+            startAutoScroll(timeToScroll, pauseTime);
+            autoscroll = true;
+            console.log('Autoscroll turned on');
         }
-    }, 10);
-}
+    });
 
-function stopAutoScroll() {
-    clearInterval(autoScrollInterval);
-}
+    let scrollPosition = 0;
+    let scrollDirection = 1;
+    let autoScrollInterval;
+    let timeToScroll = 50000;
+    let pauseTime = 5000;
 
-window.addEventListener('scroll', () => {
-    if (!isManualScroll) {
-        stopAutoScroll();
-        isManualScroll = true;
-        console.log('Manual scroll detected');
+    function startAutoScroll(scrollTime, stayTime) {
+        const scrollStep = (document.body.scrollHeight - window.innerHeight) / (scrollTime / 10);
+        let stayCounter = 0;
+        let isStaying = false;
         
-        setTimeout(() => {
-            isManualScroll = false;
+        autoScrollInterval = setInterval(() => {
             if (autoscroll) {
-                startAutoScroll(timeToScroll, pauseTime);
-                console.log('Resuming auto scroll');
+                if (!isStaying) {
+                    scrollPosition += scrollDirection * scrollStep;
+                    
+                    if (scrollPosition >= document.body.scrollHeight - window.innerHeight) {
+                        scrollDirection = -1;
+                        scrollPosition = document.body.scrollHeight - window.innerHeight;
+                        isStaying = true;
+                    } else if (scrollPosition <= 0) {
+                        scrollDirection = 1;
+                        scrollPosition = 0;
+                        isStaying = true;
+                    }
+                    
+                    document.documentElement.scrollTop = scrollPosition;
+                    document.body.scrollTop = scrollPosition;
+                    
+                } else {
+                    stayCounter += 10;
+                    if (stayCounter >= stayTime) {
+                        stayCounter = 0;
+                        isStaying = false;
+                    }
+                }
             }
-        }, 10000);
+        }, 10);
     }
+
+    function stopAutoScroll() {
+        clearInterval(autoScrollInterval);
+    }
+
+    startAutoScroll(timeToScroll, pauseTime);
+
+    const sunElement = document.querySelector('.sun');
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                console.log('Sun element in view: stopping fireworks');
+                fireworks.waitStop();
+                disableCssFireworks();
+                launchInput.removeEventListener('click', handleLaunchInputClick);
+                launchInput.disabled = true
+            } else {
+                console.log('Sun element out of view: starting fireworks');
+                if (launchInput.checked) {
+                    fireworks.start();
+                    enableCssFireworks();
+                    launchInput.addEventListener('click', handleLaunchInputClick);
+                    launchInput.disabled = false;
+                }
+            }
+        });
+    }, {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0
+    });
+
+    observer.observe(sunElement);
 });
-
-let manualScrollTimeout;
-startAutoScroll(timeToScroll, pauseTime);
-
-
-});
-
