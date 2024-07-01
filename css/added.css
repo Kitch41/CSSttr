@@ -763,7 +763,7 @@
     --shadow-start: oklch(95% 0.145 var(--hue-2));
     --shadow-end: oklch(60% 0.29 var(--hue));
 
-    /* No color function, so we can use different opacity values */
+    /* No color function, so i use different opacity values */
     --shadow-inner: 60% 0.29 var(--hue);
 
     all: unset;
@@ -775,6 +775,7 @@
     background-color: transparent;
     padding: 0.5rem 0.5rem;
     border: 1px solid grey;
+    z-index: 10;
 
 
     /* Text */
@@ -870,24 +871,38 @@
     width: 100vw;
     height: 400vh;
     background-image: 
+    linear-gradient(
+        0deg,
+        rgba(129,214,243,1) 18%,
+        rgba(17,34,51,1) 84%
+    );
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.sun {
+    background-image: 
     radial-gradient(
         circle at center in oklch,
         Gold,
         Orange,
         Crimson 5em,
-        transparent 30%
-    ),
-    linear-gradient(
-        0deg,
-        rgba(129,214,243,1) 18%,
-        rgba(243,203,127,1) 39%,
-        rgba(237,149,0,1) 60%,
-        rgba(17,34,51,1) 84%
+        transparent 60%
     );
+    background-position: bottom right;
 
-    /* background-position: 
-        center 80vh,
-        center bottom; */
+    width: 100%;
+    height: 20%;
+    position: sticky;
+    top: -10%;
+    right: 100%;
+}
+
+.suncontainer {
+    width: 25%;
+    height: 70%;
 }
 
 canvas {

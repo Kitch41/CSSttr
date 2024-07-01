@@ -60,12 +60,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const launchInput = document.querySelector('input[name="launch"]');
     const jsButton = document.querySelector('#js');
+    const bothButton = document.querySelector('#both');
     const allinputs = document.querySelectorAll('input');
     const settingsMenu = document.getElementById('settings-menu');
     const settingsInputs = settingsMenu.querySelectorAll('input');
     let isEnabled = false;
 
-    launchInput.addEventListener('click', function () {
+    function handleLaunchInputClick() {
         isEnabled = !isEnabled;
 
         allinputs.forEach(input => {
@@ -80,6 +81,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     element.style.display = "none";
                 });
                 fireworks.start();
+
+            } else if (bothButton.checked) {
+                fireworks.start();
             } else {
                 cssdivs.forEach(element => {
                     element.style.display = "block";
@@ -88,7 +92,9 @@ document.addEventListener('DOMContentLoaded', function () {
         } else {
             fireworks.waitStop();
         }
-    });
+    }
+
+    launchInput.addEventListener('click', handleLaunchInputClick);
 
     let cssdivs = container.querySelectorAll('div');
 
@@ -153,87 +159,98 @@ document.addEventListener('DOMContentLoaded', function () {
         starContainer.style.display = starButton.checked ? 'block' : 'none';
 
     });
-const autoscrollButton = document.getElementById('autoscroll-button');
-let autoscroll = true; // Initial state is autoscrolling on
 
-autoscrollButton.addEventListener('change', () => {
-    if (autoscroll) {
-        stopAutoScroll();
-        autoscroll = false;
-        console.log('Autoscroll turned off');
-    } else {
-        startAutoScroll(timeToScroll, pauseTime);
-        autoscroll = true;
-        console.log('Autoscroll turned on');
-    }
-});
+    const autoscrollButton = document.getElementById('autoscroll-button');
+    let autoscroll = true; // Initial state is autoscrolling on
 
-let scrollPosition = 0;
-let scrollDirection = 1;
-let isManualScroll = false;
-let autoScrollInterval;
-let timeToScroll = 50000;
-let pauseTime = 5000;
-
-function startAutoScroll(scrollTime, stayTime) {
-    const scrollStep = (document.body.scrollHeight - window.innerHeight) / (scrollTime / 10);
-    let stayCounter = 0;
-    let isStaying = false;
-    
-    autoScrollInterval = setInterval(() => {
-        if (!isManualScroll && autoscroll) { // Check if autoscroll is enabled
-            if (!isStaying) {
-                scrollPosition += scrollDirection * scrollStep;
-                
-                if (scrollPosition >= document.body.scrollHeight - window.innerHeight) {
-                    scrollDirection = -1;
-                    scrollPosition = document.body.scrollHeight - window.innerHeight;
-                    isStaying = true;
-                } else if (scrollPosition <= 0) {
-                    scrollDirection = 1;
-                    scrollPosition = 0;
-                    isStaying = true;
-                }
-                
-                document.documentElement.scrollTop = scrollPosition;
-                document.body.scrollTop = scrollPosition;
-                
-                // console.log('Scrolling to:', scrollPosition);
-                // for testing the position timing
-            } else {
-                stayCounter += 10;
-                if (stayCounter >= stayTime) {
-                    stayCounter = 0;
-                    isStaying = false;
-                }
-            }
+    autoscrollButton.addEventListener('change', () => {
+        if (autoscroll) {
+            stopAutoScroll();
+            autoscroll = false;
+            console.log('Autoscroll turned off');
+        } else {
+            startAutoScroll(timeToScroll, pauseTime);
+            autoscroll = true;
+            console.log('Autoscroll turned on');
         }
-    }, 10);
-}
+    });
 
-function stopAutoScroll() {
-    clearInterval(autoScrollInterval);
-}
+    let scrollPosition = 0;
+    let scrollDirection = 1;
+    let isManualScroll = false;
+    let autoScrollInterval;
+    let timeToScroll = 50000;
+    let pauseTime = 5000;
 
-window.addEventListener('scroll', () => {
-    if (!isManualScroll) {
-        stopAutoScroll();
-        isManualScroll = true;
-        console.log('Manual scroll detected');
+    function startAutoScroll(scrollTime, stayTime) {
+        const scrollStep = (document.body.scrollHeight - window.innerHeight) / (scrollTime / 10);
+        let stayCounter = 0;
+        let isStaying = false;
         
-        setTimeout(() => {
-            isManualScroll = false;
-            if (autoscroll) {
-                startAutoScroll(timeToScroll, pauseTime);
-                console.log('Resuming auto scroll');
+        autoScrollInterval = setInterval(() => {
+            if (!isManualScroll && autoscroll) { // Check if autoscroll is enabled
+                if (!isStaying) {
+                    scrollPosition += scrollDirection * scrollStep;
+                    
+                    if (scrollPosition >= document.body.scrollHeight - window.innerHeight) {
+                        scrollDirection = -1;
+                        scrollPosition = document.body.scrollHeight - window.innerHeight;
+                        isStaying = true;
+                    } else if (scrollPosition <= 0) {
+                        scrollDirection = 1;
+                        scrollPosition = 0;
+                        isStaying = true;
+                    }
+                    
+                    document.documentElement.scrollTop = scrollPosition;
+                    document.body.scrollTop = scrollPosition;
+                    
+                    // console.log('Scrolling to:', scrollPosition);
+                    // for testing the position timing
+                } else {
+                    stayCounter += 10;
+                    if (stayCounter >= stayTime) {
+                        stayCounter = 0;
+                        isStaying = false;
+                    }
+                }
             }
-        }, 10000);
+        }, 10);
     }
+
+    function stopAutoScroll() {
+        clearInterval(autoScrollInterval);
+    }
+
+    window.addEventListener('scroll', () => {
+        if (!isManualScroll) {
+            stopAutoScroll();
+            isManualScroll = true;
+            console.log('Manual scroll detected');
+            
+            setTimeout(() => {
+                isManualScroll = false;
+                if (autoscroll) {
+                    startAutoScroll(timeToScroll, pauseTime);
+                    console.log('Resuming auto scroll');
+                }
+            }, 10000);
+        }
+    });
+
+    let manualScrollTimeout;
+    startAutoScroll(timeToScroll, pauseTime);
+
+    const scrollThreshold = 500; // Set your threshold value here
+
+    function checkScrollPosition() {
+        const currentScroll = window.scrollY || document.documentElement.scrollTop;
+        if (currentScroll >= scrollThreshold) {
+            launchInput.removeEventListener('click', handleLaunchInputClick);
+        } else {
+            launchInput.addEventListener('click', handleLaunchInputClick);
+        }
+    }
+
+    window.addEventListener('scroll', checkScrollPosition);
 });
-
-let manualScrollTimeout;
-startAutoScroll(timeToScroll, pauseTime);
-
-
-});
-

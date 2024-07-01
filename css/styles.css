@@ -652,6 +652,7 @@ section > ul::-webkit-scrollbar {
   label[for="2"],
   label[for="3"],
   label[for="css"],
+  label[for="both"],
   label[for="js"]  {
     text-align: center;
     align-items: center;
@@ -676,6 +677,7 @@ section > ul::-webkit-scrollbar {
   input[type="radio"][id="2"]:checked + label,
   input[type="radio"][id="3"]:checked + label, 
   input[type="radio"][id="css"]:checked + label,
+  input[type="radio"][id="both"]:checked + label,
   input[type="radio"][id="js"]:checked + label{
     background-color: red;
     box-shadow: 0 0 6px black inset, 3px 3px 1px grey;
@@ -685,6 +687,7 @@ section > ul::-webkit-scrollbar {
   input[type="radio"][id="2"]:active + label,
   input[type="radio"][id="3"]:active + label,
   input[type="radio"][id="css"]:active + label,
+  input[type="radio"][id="both"]:active + label,
   input[type="radio"][id="js"]:active + label {
     background-color: red;
     box-shadow: 2px 0 6px black inset, 2px 2px 5px black;
@@ -700,6 +703,7 @@ section > ul::-webkit-scrollbar {
   input[type="radio"][id="2"],
   input[type="radio"][id="3"],
   input[type="radio"][id="css"],
+  input[type="radio"][id="both"],
   input[type="radio"][id="js"] {
     display: none;
   }
