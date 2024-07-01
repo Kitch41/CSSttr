@@ -112,11 +112,11 @@
     -webkit-transform: scale(.35);
     -moz-transform: scale(.35);
     transform: scale(.35);
-    -moz-animation: driftBg 70s;
+    -moz-animation: driftBg 70s infinite;
     -moz-animation-timing-function: linear;
-    -webkit-animation: driftBg 70s;
+    -webkit-animation: driftBg 70s infinite;
     -webkit-animation-timing-function: linear;
-    animation: driftBg 70s;
+    animation: driftBg 70s infinite;
     animation-timing-function: linear;
     z-index: 0;
 }
@@ -128,11 +128,11 @@
     -webkit-transform: scale(.40, .45);
     -moz-transform: scale(.40, .45);
     transform: scale(.40, .45);
-    -moz-animation: driftBg2 60s;
+    -moz-animation: driftBg2 60s infinite;
     -moz-animation-timing-function: linear;
-    -webkit-animation: driftBg2 60s;
+    -webkit-animation: driftBg2 60s infinite;
     -webkit-animation-timing-function: linear;
-    animation: driftBg2 60s;
+    animation: driftBg2 60s infinite;
     animation-timing-function: linear;
     z-index: 0;
 }
@@ -144,11 +144,11 @@
     -webkit-transform: scale(.40);
     -moz-transform: scale(.40);
     transform: scale(.40);
-    -moz-animation: driftBg3 90s;
+    -moz-animation: driftBg3 90s infinite;
     -moz-animation-timing-function: linear;
-    -webkit-animation: driftBg3 90s;
+    -webkit-animation: driftBg3 90s infinite;
     -webkit-animation-timing-function: linear;
-    animation: driftBg3 90s;
+    animation: driftBg3 90s infinite;
     animation-timing-function: linear;
     z-index: 0;
 }
@@ -330,7 +330,9 @@
     background: white;
     position: absolute;
     z-index: 0;
+    border-radius: 50%;
 }
+
 
 #star1 {
     top: 20px;
@@ -862,4 +864,34 @@
             opacity: 1;
         }
     }
+}
+
+.background-light {
+    width: 100vw;
+    height: 400vh;
+    background-image: 
+    radial-gradient(
+        circle at center in oklch,
+        Gold,
+        Orange,
+        Crimson 5em,
+        transparent 30%
+    ),
+    linear-gradient(
+        0deg,
+        rgba(129,214,243,1) 18%,
+        rgba(243,203,127,1) 39%,
+        rgba(237,149,0,1) 60%,
+        rgba(17,34,51,1) 84%
+    );
+
+    /* background-position: 
+        center 80vh,
+        center bottom; */
+}
+
+canvas {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
 }

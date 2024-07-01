@@ -10,7 +10,7 @@
     --colorleft2 : hsl(calc(360 * var(--secondaryhue2, .9)) 100% 50%);
     --colorright2 : hsl(calc(360 * var(--secondaryhue3, .9)) 100% 50%);
 
-    --intro-duration: 2s;
+    --intro-duration: 4s;
 
 
 }
@@ -94,11 +94,8 @@
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
 
-    background: 
-    linear-gradient(#0007, #0000),
-    #123;
+
   margin: 0;
-  height: 100vh;
   overflow: hidden;
   }
 
@@ -200,6 +197,7 @@
 
     animation: intro var(--intro-duration) ;
     z-index: 10;
+    transition: .4s ease;
 
     @media (max-width: 1060px) {
         min-width: 100%!important;
