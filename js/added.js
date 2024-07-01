@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const settingsInputs = settingsMenu.querySelectorAll('input');
     let isEnabled = false;
 
-    function handleLaunchInputClick() {
+    launchInput.addEventListener('click', function () {
         isEnabled = !isEnabled;
 
         allinputs.forEach(input => {
@@ -92,9 +92,7 @@ document.addEventListener('DOMContentLoaded', function () {
         } else {
             fireworks.waitStop();
         }
-    }
-
-    launchInput.addEventListener('click', handleLaunchInputClick);
+    });
 
     let cssdivs = container.querySelectorAll('div');
 
@@ -159,98 +157,87 @@ document.addEventListener('DOMContentLoaded', function () {
         starContainer.style.display = starButton.checked ? 'block' : 'none';
 
     });
+const autoscrollButton = document.getElementById('autoscroll-button');
+let autoscroll = true; // Initial state is autoscrolling on
 
-    const autoscrollButton = document.getElementById('autoscroll-button');
-    let autoscroll = true; // Initial state is autoscrolling on
+autoscrollButton.addEventListener('change', () => {
+    if (autoscroll) {
+        stopAutoScroll();
+        autoscroll = false;
+        console.log('Autoscroll turned off');
+    } else {
+        startAutoScroll(timeToScroll, pauseTime);
+        autoscroll = true;
+        console.log('Autoscroll turned on');
+    }
+});
 
-    autoscrollButton.addEventListener('change', () => {
-        if (autoscroll) {
-            stopAutoScroll();
-            autoscroll = false;
-            console.log('Autoscroll turned off');
-        } else {
-            startAutoScroll(timeToScroll, pauseTime);
-            autoscroll = true;
-            console.log('Autoscroll turned on');
-        }
-    });
+let scrollPosition = 0;
+let scrollDirection = 1;
+let isManualScroll = false;
+let autoScrollInterval;
+let timeToScroll = 50000;
+let pauseTime = 5000;
 
-    let scrollPosition = 0;
-    let scrollDirection = 1;
-    let isManualScroll = false;
-    let autoScrollInterval;
-    let timeToScroll = 50000;
-    let pauseTime = 5000;
-
-    function startAutoScroll(scrollTime, stayTime) {
-        const scrollStep = (document.body.scrollHeight - window.innerHeight) / (scrollTime / 10);
-        let stayCounter = 0;
-        let isStaying = false;
-        
-        autoScrollInterval = setInterval(() => {
-            if (!isManualScroll && autoscroll) { // Check if autoscroll is enabled
-                if (!isStaying) {
-                    scrollPosition += scrollDirection * scrollStep;
-                    
-                    if (scrollPosition >= document.body.scrollHeight - window.innerHeight) {
-                        scrollDirection = -1;
-                        scrollPosition = document.body.scrollHeight - window.innerHeight;
-                        isStaying = true;
-                    } else if (scrollPosition <= 0) {
-                        scrollDirection = 1;
-                        scrollPosition = 0;
-                        isStaying = true;
-                    }
-                    
-                    document.documentElement.scrollTop = scrollPosition;
-                    document.body.scrollTop = scrollPosition;
-                    
-                    // console.log('Scrolling to:', scrollPosition);
-                    // for testing the position timing
-                } else {
-                    stayCounter += 10;
-                    if (stayCounter >= stayTime) {
-                        stayCounter = 0;
-                        isStaying = false;
-                    }
+function startAutoScroll(scrollTime, stayTime) {
+    const scrollStep = (document.body.scrollHeight - window.innerHeight) / (scrollTime / 10);
+    let stayCounter = 0;
+    let isStaying = false;
+    
+    autoScrollInterval = setInterval(() => {
+        if (!isManualScroll && autoscroll) { // Check if autoscroll is enabled
+            if (!isStaying) {
+                scrollPosition += scrollDirection * scrollStep;
+                
+                if (scrollPosition >= document.body.scrollHeight - window.innerHeight) {
+                    scrollDirection = -1;
+                    scrollPosition = document.body.scrollHeight - window.innerHeight;
+                    isStaying = true;
+                } else if (scrollPosition <= 0) {
+                    scrollDirection = 1;
+                    scrollPosition = 0;
+                    isStaying = true;
+                }
+                
+                document.documentElement.scrollTop = scrollPosition;
+                document.body.scrollTop = scrollPosition;
+                
+                // console.log('Scrolling to:', scrollPosition);
+                // for testing the position timing
+            } else {
+                stayCounter += 10;
+                if (stayCounter >= stayTime) {
+                    stayCounter = 0;
+                    isStaying = false;
                 }
             }
-        }, 10);
-    }
-
-    function stopAutoScroll() {
-        clearInterval(autoScrollInterval);
-    }
-
-    window.addEventListener('scroll', () => {
-        if (!isManualScroll) {
-            stopAutoScroll();
-            isManualScroll = true;
-            console.log('Manual scroll detected');
-            
-            setTimeout(() => {
-                isManualScroll = false;
-                if (autoscroll) {
-                    startAutoScroll(timeToScroll, pauseTime);
-                    console.log('Resuming auto scroll');
-                }
-            }, 10000);
         }
-    });
+    }, 10);
+}
 
-    let manualScrollTimeout;
-    startAutoScroll(timeToScroll, pauseTime);
+function stopAutoScroll() {
+    clearInterval(autoScrollInterval);
+}
 
-    const scrollThreshold = 500; // Set your threshold value here
-
-    function checkScrollPosition() {
-        const currentScroll = window.scrollY || document.documentElement.scrollTop;
-        if (currentScroll >= scrollThreshold) {
-            launchInput.removeEventListener('click', handleLaunchInputClick);
-        } else {
-            launchInput.addEventListener('click', handleLaunchInputClick);
-        }
+window.addEventListener('scroll', () => {
+    if (!isManualScroll) {
+        stopAutoScroll();
+        isManualScroll = true;
+        console.log('Manual scroll detected');
+        
+        setTimeout(() => {
+            isManualScroll = false;
+            if (autoscroll) {
+                startAutoScroll(timeToScroll, pauseTime);
+                console.log('Resuming auto scroll');
+            }
+        }, 10000);
     }
-
-    window.addEventListener('scroll', checkScrollPosition);
 });
+
+let manualScrollTimeout;
+startAutoScroll(timeToScroll, pauseTime);
+
+
+});
+
