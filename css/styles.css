@@ -648,6 +648,18 @@ section > ul::-webkit-scrollbar {
   
   /* ===========all Labels============*/
   
+  
+    input:disabled + label[for="1"],
+    input:disabled  + label[for="2"],
+    input:disabled + label[for="3"],
+    input:disabled + label[for="css"],
+    input:disabled + label[for="both"],
+    input:disabled + label[for="js"]  {
+      background-color: gray;
+  
+    }
+  
+
   label[for="1"],
   label[for="2"],
   label[for="3"],
@@ -669,10 +681,23 @@ section > ul::-webkit-scrollbar {
     transition: 1s;
     -webkit-box-shadow: 2px 0 6px inset black, 3px 3px 1px grey;
     box-shadow: 2px 0 6px inset black, 3px 3px 1px grey ;
+
+
   }
   
   /* ===========Amount button labels============*/
   
+
+  input[type="radio"][id="1"]:checked:disabled + label,
+  input[type="radio"][id="2"]:checked:disabled + label,
+  input[type="radio"][id="3"]:checked:disabled + label,
+  input[type="radio"][id="css"]:checked:disabled + label,
+  input[type="radio"][id="both"]:checked:disabled + label,
+  input[type="radio"][id="js"]:checked:disabled + label {
+    background-color: #444343;
+  }
+
+
   input[type="radio"][id="1"]:checked + label,
   input[type="radio"][id="2"]:checked + label,
   input[type="radio"][id="3"]:checked + label, 
@@ -681,6 +706,8 @@ section > ul::-webkit-scrollbar {
   input[type="radio"][id="js"]:checked + label{
     background-color: red;
     box-shadow: 0 0 6px black inset, 3px 3px 1px grey;
+
+
   }
   
   input[type="radio"][id="1"]:active + label,
@@ -691,6 +718,7 @@ section > ul::-webkit-scrollbar {
   input[type="radio"][id="js"]:active + label {
     background-color: red;
     box-shadow: 2px 0 6px black inset, 2px 2px 5px black;
+
   }
   /* ===========Hover============*/
   input[type="radio"] + label:hover {
@@ -946,6 +974,13 @@ section > ul > li:nth-of-type(5) {
     box-shadow: 
       inset 2px 2px 3px 0 black,
       3px 2px 0 0 var(--thumbcolor);
+
+  }
+
+  input[type="range"]:disabled::-webkit-slider-thumb {
+    background-color: gray;
+    box-shadow: inset 2px 2px 3px 0 black,
+    3px 2px 0 0 gray;
   }
   
   li:nth-of-type(3) > label:nth-of-type(1) > input[type="range"] {
