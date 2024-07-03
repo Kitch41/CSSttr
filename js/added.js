@@ -76,10 +76,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (isEnabled) {
             if (jsButton.checked) {
-                enableCssFireworks();
+                disableCssFireworks();
                 fireworks.start();
             } else if (bothButton.checked) {
                 fireworks.start();
+            } else if (cssButton.checked){
+                enableCssFireworks();
+
             } else {
                 disableCssFireworks();
             }
@@ -165,7 +168,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     const autoscrollButton = document.getElementById('autoscroll-button');
-    let autoscroll = true;
+    let autoscroll = false;
 
     autoscrollButton.addEventListener('change', () => {
         if (autoscroll) {
@@ -235,6 +238,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 disableCssFireworks();
                 launchInput.removeEventListener('click', handleLaunchInputClick);
                 launchInput.disabled = true
+
+                // allinputs.forEach(input => {
+                //     if (input !== launchInput && input.name !== 'popup' && !settingsMenu.contains(input)) {
+                //         input.disabled = true;
+                //     }
+                // });
             } else {
                 console.log('Sun element out of view: starting fireworks');
                 if (launchInput.checked) {
@@ -242,6 +251,12 @@ document.addEventListener('DOMContentLoaded', function () {
                     enableCssFireworks();
                     launchInput.addEventListener('click', handleLaunchInputClick);
                     launchInput.disabled = false;
+
+                    // allinputs.forEach(input => {
+                    //     if (input !== launchInput && input.name !== 'popup' && !settingsMenu.contains(input)) {
+                    //         input.disabled = false;
+                    //     }
+                    // });
                 }
             }
         });

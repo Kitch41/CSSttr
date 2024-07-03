@@ -898,6 +898,7 @@
     position: sticky;
     top: -10%;
     right: 100%;
+    z-index: 0;
 
     @media (max-width:600px) {
         background-image: 
